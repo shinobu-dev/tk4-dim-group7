@@ -36,5 +36,11 @@ class ProdukController {
         $this->model->deleteProduct($id);
         header('Location: index.php');
     }
+    
+    public function showLPResults() {
+        $results = $this->model->solveProductMix();
+        require 'app/view/hasil_lp.php';
+    }
+    
 }
 ?>

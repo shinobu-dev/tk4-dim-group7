@@ -32,5 +32,29 @@ class ProdukModel {
         $stmt = $pdo->prepare('DELETE FROM tbl_produk WHERE id = ?');
         $stmt->execute([$id]);
     }
+
+    public function solveProductMix() {
+        global $pdo;
+    
+        $stmt = $pdo->query('SELECT id, kapasitas, keuntungan FROM produk');
+        $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    
+        $lp = new \LP();
+        $lp->setVerbose(\LP::IMPORTANT);
+    
+        foreach ($products as $product) {
+            $lp->addVariable($product['id'], \LP::REAL, $product['kapasitas']);
+        }
+    
+        $lp->setObjective($products, \LP::MAXIMIZE);
+    
+        $totalKapasitas = $pdo->query('SELECT SUM(kapasitas) AS total_kapasitas FROM produk')->fetch()['total_kapasitas'];
+        $lp->addConstraint($totalKapasitas, \LP::LE, 100);
+    
+        $lp->solve();
+    
+        return $lp->getVariables();
+    }
+    
 }
 ?>
