@@ -21,6 +21,18 @@
     <div class="container">
         <div class="header-area">
             <h2>List Produk</h2>
+            <br>
+            <div class="card text-left">
+              <img class="card-img-top" src="holder.js/100px180/" alt="">
+              <div class="card-body">
+                <h4 class="card-title">Group 7</h4>
+                <p class="card-text">Aquilla Adjani Magrid - 2702405452</p>
+                <p class="card-text">Ayu Puspita Nurdaliani - 2602292263</p>
+                <p class="card-text">Dominikus Yuppi Kurniawan Kristanto - 2702427011</p>
+                <p class="card-text">Samuel Evan Theo Yudistria - 2702399670</p>
+              </div>
+            </div>
+            <br>
             <a href="index.php?action=add" class="btn btn-primary">Tambah Produk</a>
         </div>
         <div class="table-responsive">
